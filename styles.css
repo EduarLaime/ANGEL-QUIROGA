@@ -2,166 +2,179 @@
     --primary: #4C117A;   /* Morado */
     --accent: #3BC3DE;    /* Celeste */
     --alert: #D10000;     /* Rojo */
+    --dark: #1a1a1a;
+    --gray: #666;
     --white: #FFFFFF;
-    --font-reg: 'Sekuya Regular', serif;
-    --font-bold: 'GothamSSM-Bold', sans-serif;
 }
 
-/* Reset básico para eliminar scroll por defecto */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    background: linear-gradient(135deg, var(--primary) 0%, #2a0546 100%);
-    color: var(--white);
-    font-family: var(--font-reg);
-    height: 100vh; /* Ocupar toda la pantalla */
+    background-color: var(--primary);
+    /* Un degradado sutil y elegante de fondo */
+    background: radial-gradient(circle at top right, #6a1b9a 0%, var(--primary) 100%);
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column; /* Organizar verticalmente: Header - Main - Footer */
-    overflow: hidden; /* EVITA EL SCROLL EN LA PÁGINA PRINCIPAL */
-}
-
-/* --- Header y Footer (Ocupan poco espacio) --- */
-.top-bar, .bottom-bar {
-    flex: 0 0 auto; /* No crecen ni se encogen */
-    text-align: center;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.2);
-}
-
-.party-name {
-    font-family: var(--font-bold);
-    color: var(--white);
-    letter-spacing: 3px;
-    font-size: 1.2rem;
-}
-
-.bottom-bar p { font-size: 0.8rem; opacity: 0.7; }
-
-/* --- Contenido Principal (El área central) --- */
-.main-content {
-    flex: 1; /* Ocupa todo el espacio sobrante entre header y footer */
-    display: flex;
-    flex-direction: row; /* Lado a lado en PC */
-    align-items: center;
     justify-content: center;
+    align-items: center;
     padding: 20px;
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
+}
+
+/* --- Contenedor Principal (Estilo Tarjeta Flotante) --- */
+.card {
+    background: var(--white);
     width: 100%;
-}
-
-/* Columna Visual (Imagen) */
-.column-visual {
-    flex: 1;
-    display: flex;
-    justify-content: center; /* Centrar imagen horizontalmente */
-    align-items: center;     /* Centrar imagen verticalmente */
-}
-
-.candidate-img {
-    height: 60vh; /* La imagen se adapta al alto de la pantalla */
-    width: auto;
-    max-width: 100%;
-    object-fit: cover;
+    max-width: 1000px;
     border-radius: 20px;
-    border: 4px solid var(--accent);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    display: flex;
+    overflow: hidden; /* Para que la imagen respete los bordes redondos */
+    min-height: 600px;
 }
 
-/* Columna Información */
-.column-info {
+/* --- Columna Izquierda (Imagen) --- */
+.card-image {
     flex: 1;
+    position: relative;
+    background-color: var(--dark);
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Filtro morado sutil sobre la imagen para unificar color */
+.overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, transparent 60%, var(--primary) 100%);
+    opacity: 0.6;
+}
+
+/* --- Columna Derecha (Texto) --- */
+.card-content {
+    flex: 1;
+    padding: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: left;
+    position: relative;
 }
 
-.candidate-name {
-    font-family: var(--font-bold);
-    font-size: 3rem;
-    line-height: 1;
+/* Etiqueta del partido */
+.party-label {
+    background: var(--primary);
+    color: var(--white);
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border-radius: 50px;
     text-transform: uppercase;
 }
 
-.candidate-role {
-    font-family: var(--font-bold);
-    color: var(--accent);
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+/* Títulos */
+h1 {
+    font-size: 3.5rem;
+    color: var(--dark);
+    line-height: 0.9;
+    margin-top: 20px;
+    font-weight: 900;
 }
 
-.bio-box {
-    background: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
-    padding: 20px;
-    border-left: 5px solid var(--alert);
-    margin-bottom: 25px;
-    border-radius: 0 10px 10px 0;
-    
-    /* Si el texto es MUY largo, hace scroll solo dentro de la cajita, 
-       no en toda la página */
-    max-height: 20vh; 
-    overflow-y: auto; 
+.text-highlight {
+    color: var(--primary);
+}
+
+.role {
+    font-size: 1.2rem;
+    color: var(--accent);
+    letter-spacing: 3px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* Elemento decorativo minimalista */
+.divider {
+    width: 50px;
+    height: 4px;
+    background: var(--alert);
+    margin: 25px 0;
+}
+
+.bio {
+    color: var(--gray);
+    line-height: 1.6;
+    font-size: 1rem;
+    max-width: 90%;
+}
+
+/* Botón */
+.actions {
+    margin-top: 30px;
 }
 
 .cta-btn {
     background-color: var(--alert);
     color: var(--white);
-    font-family: var(--font-bold);
-    padding: 15px 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    padding: 15px 40px;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     cursor: pointer;
-    border-radius: 50px;
-    transition: 0.3s;
-    width: fit-content;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(209, 0, 0, 0.2);
 }
 
 .cta-btn:hover {
-    background-color: #ff1a1a;
-    transform: scale(1.05);
-    box-shadow: 0 0 15px var(--alert);
+    background-color: #b30000;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 25px rgba(209, 0, 0, 0.3);
 }
 
-/* --- RESPONSIVE (Móviles y Tablets) --- */
+/* --- Footer Legal (Requerido por Facebook) --- */
+.legal-footer {
+    margin-top: auto; /* Empuja el footer al fondo */
+    padding-top: 40px;
+    border-top: 1px solid #eee;
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.legal-title {
+    color: var(--dark);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+/* --- RESPONSIVE (Móviles) --- */
 @media (max-width: 768px) {
-    .main-content {
-        flex-direction: column; /* Cambia a vertical */
-        gap: 15px;
-        padding: 10px;
-        text-align: center;
+    body {
+        padding: 0;
+        align-items: flex-start;
+        background: var(--white);
     }
 
-    .column-visual {
-        flex: 0 0 auto; /* La imagen no estira el layout */
+    .card {
+        flex-direction: column;
+        border-radius: 0;
+        box-shadow: none;
+        max-width: 100%;
     }
 
-    .candidate-img {
-        height: 25vh; /* Imagen más pequeña en móvil para dar espacio al texto */
-        width: 25vh;
-        border-radius: 50%; /* Círculo en móvil para ahorrar espacio */
+    .card-image {
+        height: 40vh; /* Imagen arriba */
     }
 
-    .column-info {
-        align-items: center; /* Centrar todo en móvil */
-        text-align: center;
+    .card-content {
+        padding: 30px;
     }
 
-    .candidate-name { font-size: 1.8rem; }
-    .candidate-role { font-size: 1.5rem; margin-bottom: 10px; }
-    
-    .bio-box {
-        font-size: 0.9rem;
-        padding: 10px;
-        margin-bottom: 15px;
-        max-height: 25vh; /* Ajuste para móvil */
-        background: none; /* Limpiamos fondo en móvil para que no se vea pesado */
-        border: none;
-    }
-    
-    .cta-btn {
-        padding: 10px 25px;
-        font-size: 1rem;
-    }
+    h1 { font-size: 2.5rem; }
 }

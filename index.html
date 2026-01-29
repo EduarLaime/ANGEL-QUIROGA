@@ -4,44 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ing. Angel Quiroga - Alcalde | APB Súmate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <header class="top-bar">
-        <h1 class="party-name">APB SÚMATE</h1>
-    </header>
+    <div class="main-container">
+        <div class="card">
+            
+            <div class="card-image">
+                <img src="cand.png" alt="Ing. Angel Quiroga" class="hero-img">
+                <div class="overlay"></div> </div>
 
-    <main class="main-content">
-        
-        <div class="column-visual">
-            <div class="image-container">
-                <img src="cand.png" alt="Ing. Angel Quiroga" class="candidate-img">
-            </div>
-        </div>
+            <div class="card-content">
+                <header>
+                    <span class="party-label">APB SÚMATE</span>
+                </header>
 
-        <div class="column-info">
-            <div class="info-wrapper">
-                <h2 class="candidate-name">ING. ANGEL QUIROGA</h2>
-                <h3 class="candidate-role">ALCALDE</h3>
-                
-                <div class="bio-box">
-                    <p>
-                        Ingeniero de profesión, servidor por vocación. Con una trayectoria intachable en la gestión de proyectos, 
-                        Angel Quiroga busca transformar nuestro municipio con obras reales, transparencia y modernización.
-                        ¡Es hora de sumar fuerzas por el futuro!
+                <div class="text-block">
+                    <h1>ING. ANGEL <br> <span class="text-highlight">QUIROGA</span></h1>
+                    <h2 class="role">CANDIDATO A ALCALDE</h2>
+                    <div class="divider"></div>
+                    <p class="bio">
+                        Ingeniero de profesión, servidor por vocación. Transformando Sacaba con obras reales, 
+                        transparencia y modernización. <br><strong>Es hora de sumar.</strong>
                     </p>
                 </div>
 
-                <button class="cta-btn" onclick="mostrarApoyo()">SUMARME AHORA</button>
+                <div class="actions">
+                    <button class="cta-btn" onclick="mostrarApoyo()">SUMARME AHORA</button>
+                </div>
+
+                <footer class="legal-footer">
+                    <p class="legal-title">Pagado por <strong>APB Sumate</strong></p>
+                    <p>Dirección: Monseñor Roberto Nicoli, Ismael Cespedes y Granado, Cochabamba</p>
+                    <p>Teléfono: +591 62620749</p>
+                </footer>
             </div>
         </div>
-
-    </main>
-
-    <footer class="bottom-bar">
-        <p>ING. ANGEL QUIROGA &copy; 2026</p>
-    </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
