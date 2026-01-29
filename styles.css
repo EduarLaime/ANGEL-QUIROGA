@@ -11,7 +11,6 @@
 
 body {
     background-color: var(--primary);
-    /* Un degradado sutil y elegante de fondo */
     background: radial-gradient(circle at top right, #6a1b9a 0%, var(--primary) 100%);
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
@@ -21,7 +20,6 @@ body {
     padding: 20px;
 }
 
-/* --- Contenedor Principal (Estilo Tarjeta Flotante) --- */
 .card {
     background: var(--white);
     width: 100%;
@@ -29,33 +27,43 @@ body {
     border-radius: 20px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.3);
     display: flex;
-    overflow: hidden; /* Para que la imagen respete los bordes redondos */
+    overflow: hidden;
     min-height: 600px;
 }
 
-/* --- Columna Izquierda (Imagen) --- */
-.card-image {
+/* --- CARRUSEL (Columna Izquierda) --- */
+.carousel-container {
     flex: 1;
     position: relative;
     background-color: var(--dark);
+    overflow: hidden; /* Importante para que las fotos no se salgan */
 }
 
-.hero-img {
+.carousel-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
+    position: absolute; /* Las fotos se enciman una sobre otra */
+    top: 0; left: 0;
+    opacity: 0; /* Invisibles por defecto */
+    transition: opacity 1s ease-in-out; /* Efecto de desvanecimiento suave */
 }
 
-/* Filtro morado sutil sobre la imagen para unificar color */
+.carousel-img.active {
+    opacity: 1; /* Solo la que tenga clase 'active' se ve */
+    transform: scale(1.05); /* Un pequeño zoom elegante */
+    transition: opacity 1s ease-in-out, transform 6s linear;
+}
+
 .overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(to bottom, transparent 60%, var(--primary) 100%);
-    opacity: 0.6;
+    opacity: 0.5;
+    z-index: 2; /* Encima de las fotos */
 }
 
-/* --- Columna Derecha (Texto) --- */
+/* --- Columna Derecha (Logos y Texto) --- */
 .card-content {
     flex: 1;
     padding: 50px;
@@ -63,31 +71,24 @@ body {
     flex-direction: column;
     justify-content: center;
     position: relative;
+    z-index: 3;
 }
 
-/* Etiqueta del partido */
-.party-label {
-    background: var(--primary);
-    color: var(--white);
-    padding: 5px 15px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    border-radius: 50px;
-    text-transform: uppercase;
+/* Estilos para los Nuevos Logos */
+.brand-logo {
+    max-height: 50px; /* Ajusta el tamaño del logo del partido */
+    width: auto;
+    margin-bottom: 20px;
+    display: block;
 }
 
-/* Títulos */
-h1 {
-    font-size: 3.5rem;
-    color: var(--dark);
-    line-height: 0.9;
-    margin-top: 20px;
-    font-weight: 900;
-}
-
-.text-highlight {
-    color: var(--primary);
+.name-logo {
+    width: 100%;
+    max-width: 350px; /* Ajusta el tamaño del nombre */
+    height: auto;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .role {
@@ -98,7 +99,6 @@ h1 {
     font-weight: 600;
 }
 
-/* Elemento decorativo minimalista */
 .divider {
     width: 50px;
     height: 4px;
@@ -113,10 +113,7 @@ h1 {
     max-width: 90%;
 }
 
-/* Botón */
-.actions {
-    margin-top: 30px;
-}
+.actions { margin-top: 30px; }
 
 .cta-btn {
     background-color: var(--alert);
@@ -138,9 +135,8 @@ h1 {
     box-shadow: 0 15px 25px rgba(209, 0, 0, 0.3);
 }
 
-/* --- Footer Legal (Requerido por Facebook) --- */
 .legal-footer {
-    margin-top: auto; /* Empuja el footer al fondo */
+    margin-top: auto;
     padding-top: 40px;
     border-top: 1px solid #eee;
     font-size: 0.75rem;
@@ -155,26 +151,15 @@ h1 {
 
 /* --- RESPONSIVE (Móviles) --- */
 @media (max-width: 768px) {
-    body {
-        padding: 0;
-        align-items: flex-start;
-        background: var(--white);
+    body { padding: 0; align-items: flex-start; background: var(--white); }
+    .card { flex-direction: column; border-radius: 0; box-shadow: none; max-width: 100%; }
+    
+    .carousel-container {
+        height: 45vh; /* Altura del carrusel en celular */
+        flex: none;
     }
 
-    .card {
-        flex-direction: column;
-        border-radius: 0;
-        box-shadow: none;
-        max-width: 100%;
-    }
-
-    .card-image {
-        height: 40vh; /* Imagen arriba */
-    }
-
-    .card-content {
-        padding: 30px;
-    }
-
-    h1 { font-size: 2.5rem; }
+    .card-content { padding: 30px; }
+    
+    .name-logo { max-width: 280px; } /* Logo más pequeño en móvil */
 }
