@@ -1,0 +1,167 @@
+:root {
+    --primary: #4C117A;   /* Morado */
+    --accent: #3BC3DE;    /* Celeste */
+    --alert: #D10000;     /* Rojo */
+    --white: #FFFFFF;
+    --font-reg: 'Sekuya Regular', serif;
+    --font-bold: 'GothamSSM-Bold', sans-serif;
+}
+
+/* Reset básico para eliminar scroll por defecto */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: linear-gradient(135deg, var(--primary) 0%, #2a0546 100%);
+    color: var(--white);
+    font-family: var(--font-reg);
+    height: 100vh; /* Ocupar toda la pantalla */
+    display: flex;
+    flex-direction: column; /* Organizar verticalmente: Header - Main - Footer */
+    overflow: hidden; /* EVITA EL SCROLL EN LA PÁGINA PRINCIPAL */
+}
+
+/* --- Header y Footer (Ocupan poco espacio) --- */
+.top-bar, .bottom-bar {
+    flex: 0 0 auto; /* No crecen ni se encogen */
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.party-name {
+    font-family: var(--font-bold);
+    color: var(--white);
+    letter-spacing: 3px;
+    font-size: 1.2rem;
+}
+
+.bottom-bar p { font-size: 0.8rem; opacity: 0.7; }
+
+/* --- Contenido Principal (El área central) --- */
+.main-content {
+    flex: 1; /* Ocupa todo el espacio sobrante entre header y footer */
+    display: flex;
+    flex-direction: row; /* Lado a lado en PC */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Columna Visual (Imagen) */
+.column-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Centrar imagen horizontalmente */
+    align-items: center;     /* Centrar imagen verticalmente */
+}
+
+.candidate-img {
+    height: 60vh; /* La imagen se adapta al alto de la pantalla */
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 4px solid var(--accent);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Columna Información */
+.column-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.candidate-name {
+    font-family: var(--font-bold);
+    font-size: 3rem;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.candidate-role {
+    font-family: var(--font-bold);
+    color: var(--accent);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.bio-box {
+    background: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+    padding: 20px;
+    border-left: 5px solid var(--alert);
+    margin-bottom: 25px;
+    border-radius: 0 10px 10px 0;
+    
+    /* Si el texto es MUY largo, hace scroll solo dentro de la cajita, 
+       no en toda la página */
+    max-height: 20vh; 
+    overflow-y: auto; 
+}
+
+.cta-btn {
+    background-color: var(--alert);
+    color: var(--white);
+    font-family: var(--font-bold);
+    padding: 15px 30px;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: 0.3s;
+    width: fit-content;
+}
+
+.cta-btn:hover {
+    background-color: #ff1a1a;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--alert);
+}
+
+/* --- RESPONSIVE (Móviles y Tablets) --- */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column; /* Cambia a vertical */
+        gap: 15px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .column-visual {
+        flex: 0 0 auto; /* La imagen no estira el layout */
+    }
+
+    .candidate-img {
+        height: 25vh; /* Imagen más pequeña en móvil para dar espacio al texto */
+        width: 25vh;
+        border-radius: 50%; /* Círculo en móvil para ahorrar espacio */
+    }
+
+    .column-info {
+        align-items: center; /* Centrar todo en móvil */
+        text-align: center;
+    }
+
+    .candidate-name { font-size: 1.8rem; }
+    .candidate-role { font-size: 1.5rem; margin-bottom: 10px; }
+    
+    .bio-box {
+        font-size: 0.9rem;
+        padding: 10px;
+        margin-bottom: 15px;
+        max-height: 25vh; /* Ajuste para móvil */
+        background: none; /* Limpiamos fondo en móvil para que no se vea pesado */
+        border: none;
+    }
+    
+    .cta-btn {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+}
